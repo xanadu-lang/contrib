@@ -1,0 +1,30 @@
+######
+#
+# Makefile for Fibonacci
+#
+######
+SED=sed
+CAT=cat
+CPF=cp -f
+ECHO=echo
+MAKE=make
+######
+XATS2JS="${XATS2JSD}/bin/xats2js"
+######
+all:: \
+StreamDemo
+StreamDemo:: ; \
+$(XATS2JS) -d ./../DATS/StreamDemo.dats > /dev/null
+######
+all:: ; $(MAKE) -C Fibonacci test
+######
+all:: ; $(MAKE) -C PrimeNums test
+######
+cleanall:: ; $(MAKE) -C Fibonacci cleanall
+cleanall:: ; $(MAKE) -C PrimeNums cleanall
+######
+# export XATS2JSD=${XATS2JSD}
+# export XATSHOME=$(XATS2JSD)/xatsopt
+######
+
+############ end of [Makefile] ############
