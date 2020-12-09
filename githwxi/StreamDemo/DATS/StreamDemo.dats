@@ -1,15 +1,12 @@
 (* ****** ****** *)
-#staload
-REQ = "./required.dats"
-(* ****** ****** *)
 #include"\
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
-abstbox
-StreamDemo_tbox(a:t0)
+abstype
+StreamDemo_type(a:t0)
 sexpdef
-StreamDemo = StreamDemo_tbox
+StreamDemo = StreamDemo_type
 (* ****** ****** *)
 //
 #extern
@@ -18,14 +15,17 @@ fun
 StreamDemo_make
 (xs: stream(a)): StreamDemo(a)
 //
+(* ****** ****** *)
 #extern
 fun
 <a:t0>
-StreamDemo_next(obj: StreamDemo): optn(a)
+StreamDemo_next
+(demo: StreamDemo(a)) : optn(a)
 #extern
 fun
 <a:t0>
-StreamDemo_prev(obj: StreamDemo): optn(a)
+StreamDemo_prev
+(demo: StreamDemo(a)) : optn(a)
 //
 (* ****** ****** *)
 #define none optn_nil
@@ -166,8 +166,10 @@ end ) (*let*) // end of [aux1]
 local
 //
 absimpl
-StreamDemo(a:t0) =
-a0ref(streax(optn(a)))
+StreamDemo_type(a:t0) =
+( a0ref(int)
+, a0ref(streax(optn(a)))
+)
 //
 in(*in-of-local*)
 //
@@ -179,47 +181,60 @@ StreamDemo_make(xs) =
 let
 //
 val
-the_dir = a0ref_make(0)
-//
-fun
-dir_set_next() = set(the_dir,  1)
-fun
-dir_set_prev() = set(the_dir, -1)
+mydir = a0ref_make(0)
 //
 impltmp
-StreamDemo$dir<>() = get(the_dir)
+StreamDemo$dir<>
+( (*void*)) = get(mydir)
 //
 in
-a0ref_make(StreamDemo_moves<a>(xs))
+( mydir
+, a0ref_make
+  (StreamDemo_moves<a>(xs))
+)
 end // end of [StreamDemo_make]
 //
 (* ****** ****** *)
 //
-implfun
+impltmp
+<a>(*tmp*)
 StreamDemo_next
   (demo) = let
 //
-val () =
-dir_set_next()
+typedef
+data = streax(optn(a))
 //
-val xs = get(demo)
+val () =
+a0ref_set<int>
+( demo.0, 0+1 )
+//
+val xs =
+a0ref_get<data>(demo.1)
 val+
 strxcon_cons(x0, xs) = !xs
-val () = set(demo, xs) in x0
+val () =
+a0ref_set<data>(demo.1, xs) in x0
 //
 end (*let*) // end of [StreamDemo_next]
 //
-implfun
+impltmp
+<a>(*tmp*)
 StreamDemo_prev
   (demo) = let
 //
-val () =
-dir_set_prev()
+typedef
+data = streax(optn(a))
 //
-val xs = get(demo)
+val () =
+a0ref_set<int>
+( demo.0, 0-1 )
+//
+val xs =
+a0ref_get<data>(demo.1)
 val+
 strxcon_cons(x0, xs) = !xs
-val () = set(demo, xs) in x0
+val () =
+a0ref_set<data>(demo.1, xs) in x0
 //
 end (*let*) // end of [StreamDemo_prev]
 //
