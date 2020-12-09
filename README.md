@@ -1,3 +1,3 @@
 # ATS3/Contrib
 
-For contribution to ATS3/Contrib of all sorts.
+For contribution to ATS3 of all sorts.
