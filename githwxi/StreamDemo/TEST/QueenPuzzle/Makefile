@@ -21,6 +21,13 @@ QueenPuzzle.html
 QueenPuzzle.html:: ; \
 $(SED) -f myscript.sed ./../template2.html > QueenPuzzle.html
 ######
+test:: \
+QueenPuzzle_script_dats.js
+QueenPuzzle_script_dats.js:: ; \
+$(CAT) QueenPuzzle.cats > QueenPuzzle_script_dats.js # && \
+# $(CAT) $(XATS2JS_PRELUDE) >> QueenPuzzle_script_dats.js && \
+# $(XATS2JS) 1>/dev/null 2>&1 --output-a QueenPuzzle_script_dats.js -d ./QueenPuzzle.dats
+######
 clean:: ; rm -f *~
 ######
 cleanall:: clean

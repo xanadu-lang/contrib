@@ -33,6 +33,8 @@ text-align: center;
     </li>
   </ul>
 
+  <hr></hr>
+
   <h2>Control</h2>
   <ul>
     <li>
@@ -48,14 +50,20 @@ text-align: center;
        type="button" onclick="$StreamDemo.control_pause()">Pause</button>
     </li>
     <li>
-      <button id="$StreamDemo.button_step1"
-       type="button" onclick="$StreamDemo.control_step1()">Step1</button>
+      <button id="$StreamDemo.button_next1"
+       type="button" onclick="$StreamDemo.control_next1()">Next1</button>
+    </li>
+    <li>
+      <button id="$StreamDemo.button_prev1"
+       type="button" onclick="$StreamDemo.control_prev1()">Prev1</button>
     </li>
     <li>
       <button id="$StreamDemo.button_resume"
        type="button" onclick="$StreamDemo.control_resume()">Resume</button>
     </li>
   </ul>
+
+  <hr></hr>
 
   <h2>Display</h2>
   <pre id="$StreamDemo.display">
@@ -68,7 +76,7 @@ text-align: center;
   </center>
   <hr></hr>
 
-  <script src="$StreamDemo.all_dats.js"></script>
+  <script src="$StreamDemo.script_dats.js"></script>
 
 </body>
 
