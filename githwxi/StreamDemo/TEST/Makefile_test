@@ -1,6 +1,6 @@
 ######
 #
-# Makefile for Fibonacci
+# Makefile for testing
 #
 ######
 SED=sed
@@ -27,4 +27,4 @@ cleanall:: ; $(MAKE) -C PrimeNums cleanall
 # export XATSHOME=$(XATS2JSD)/xatsopt
 ######
 
-############ end of [Makefile] ############
+############ end of [Makefile_test] ############

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>$StreamDemo.title</title>
+
+<style>
+#$StreamDemo.display
+{
+width: 80%;
+margin: 0 auto;
+text-align: center;
+}
+</style>
+
+<script
+ src="https://cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js">
+</script>
+  
+</head>
+
+<body>
+
+  <h1>$StreamDemo.stream_name</h1>
+
+  <hr></hr>
+
+  <h2>Input</h2>
+  <ul>
+    <li>
+      $StreamDemo.input_description
+    </li>
+  </ul>
+
+  <h2>Control</h2>
+  <ul>
+    <li>
+      <button id="$StreamDemo.button_start"
+       type="button" onclick="$StreamDemo.control_start()">Start</button>
+    </li>
+    <li>
+      <button id="$StreamDemo.button_reset"
+       type="button" onclick="$StreamDemo.control_reset()">Reset</button>
+    </li>
+    <li>
+      <button id="$StreamDemo.button_pause"
+       type="button" onclick="$StreamDemo.control_pause()">Pause</button>
+    </li>
+    <li>
+      <button id="$StreamDemo.button_step1"
+       type="button" onclick="$StreamDemo.control_step1()">Step1</button>
+    </li>
+    <li>
+      <button id="$StreamDemo.button_resume"
+       type="button" onclick="$StreamDemo.control_resume()">Resume</button>
+    </li>
+  </ul>
+
+  <h2>Display</h2>
+  <pre id="$StreamDemo.display">
+    This is the stage for displaying
+  </pre>
+
+  <hr></hr>
+  <center>
+    The JS code used in this page is translated by xatsopt+xats2js from source written in ATS3(ATS/Xanadu).
+  </center>
+  <hr></hr>
+
+  <script src="$StreamDemo.all_dats.js"></script>
+
+</body>
+
+</html>

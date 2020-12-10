@@ -21,15 +21,15 @@ PrimeNums.html
 PrimeNums.html:: ; \
 $(SED) -f myscript.sed ./../template1.html > PrimeNums.html
 ######
-PrimeNums_all_dats.js:: ; \
-$(XATS2JS) --output-w PrimeNums_all_dats.js -d ./PrimeNums.dats
+PrimeNums_script_dats.js:: ; \
+$(XATS2JS) --output-w PrimeNums_script_dats.js -d ./PrimeNums.dats
 ######
 test:: \
-PrimeNums_all_dats.js
-PrimeNums_all_dats.js:: ; \
-$(CAT) PrimeNums.cats > PrimeNums_all_dats.js && \
-$(CAT) $(XATS2JS_PRELUDE) >> PrimeNums_all_dats.js && \
-$(XATS2JS) 1>/dev/null 2>&1 --output-a PrimeNums_all_dats.js -d ./PrimeNums.dats
+PrimeNums_script_dats.js
+PrimeNums_script_dats.js:: ; \
+$(CAT) PrimeNums.cats > PrimeNums_script_dats.js && \
+$(CAT) $(XATS2JS_PRELUDE) >> PrimeNums_script_dats.js && \
+$(XATS2JS) 1>/dev/null 2>&1 --output-a PrimeNums_script_dats.js -d ./PrimeNums.dats
 ######
 clean:: ; rm -f *~
 ######
