@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>QueenPuzzle-Stream</title>
+
+<style>
+#QueenPuzzle_display
+{
+width: 80%;
+margin: 0 auto;
+text-align: center;
+}
+</style>
+
+<script
+ src="https://cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js">
+</script>
+  
+</head>
+
+<body>
+
+  <h1>Solving the Queen-Puzzle</h1>
+
+  <hr></hr>
+
+  <h2>Input</h2>
+  <ul>
+    <li>
+      The stream of Queen-Puzzle (partial) solutions based on depth-first search
+    </li>
+  </ul>
+
+  <hr></hr>
+
+  <h2>Control</h2>
+  <ul>
+    <li>
+      <button id="QueenPuzzle_button_start"
+       type="button" onclick="QueenPuzzle_control_start()">Start</button>
+    </li>
+    <li>
+      <button id="QueenPuzzle_button_reset"
+       type="button" onclick="QueenPuzzle_control_reset()">Reset</button>
+    </li>
+    <li>
+      <button id="QueenPuzzle_button_pause"
+       type="button" onclick="QueenPuzzle_control_pause()">Pause</button>
+    </li>
+    <li>
+      <button id="QueenPuzzle_button_next1"
+       type="button" onclick="QueenPuzzle_control_next1()">Next1</button>
+    </li>
+    <li>
+      <button id="QueenPuzzle_button_prev1"
+       type="button" onclick="QueenPuzzle_control_prev1()">Prev1</button>
+    </li>
+    <li>
+      <button id="QueenPuzzle_button_resume"
+       type="button" onclick="QueenPuzzle_control_resume()">Resume</button>
+    </li>
+  </ul>
+
+  <hr></hr>
+
+  <h2>Display</h2>
+  <pre id="QueenPuzzle_display">
+    This is the stage for displaying
+  </pre>
+
+  <hr></hr>
+  <center>
+    The JS code used in this page is translated by xatsopt+xats2js from source written in ATS3(ATS/Xanadu).
+  </center>
+  <hr></hr>
+
+  <script src="QueenPuzzle_script_dats.js"></script>
+
+</body>
+
+</html>
