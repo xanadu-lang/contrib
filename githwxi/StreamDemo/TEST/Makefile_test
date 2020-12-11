@@ -22,6 +22,7 @@ all:: ; $(MAKE) -C PrimeNums test
 ######
 cleanall:: ; $(MAKE) -C Fibonacci cleanall
 cleanall:: ; $(MAKE) -C PrimeNums cleanall
+cleanall:: ; $(MAKE) -C QueenPuzzle cleanall
 ######
 # export XATS2JSD=${XATS2JSD}
 # export XATSHOME=$(XATS2JSD)/xatsopt
