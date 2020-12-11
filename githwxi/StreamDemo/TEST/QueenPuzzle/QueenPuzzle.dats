@@ -181,10 +181,6 @@ StreamDemo_prev1<node>(theQueenPuzzleDemo)
 fun
 theQueenPuzzleDemo_solq
   (opt: optn(node)): bool = $exname()
-#extern
-fun
-theQueenPuzzleDemo_print
-  (opt: optn(node)): void = $exname()
 //
 impltmp
 theQueenPuzzleDemo_solq
@@ -193,6 +189,11 @@ theQueenPuzzleDemo_solq
 case+ nodeopt of
 | optn_cons(xs) => (size(xs) = N) | _ => false
 )
+(* ****** ****** *)
+#extern
+fun
+theQueenPuzzleDemo_print
+  (opt: optn(node)): void = $exname()
 impltmp
 theQueenPuzzleDemo_print
   ( nodeopt ) =
