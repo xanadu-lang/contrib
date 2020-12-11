@@ -60,7 +60,7 @@ PrimeNums_control_next
   ((*void*)) =
 let
 val x0 =
-StreamDemo_next<int>(thePrimeNumsDemo)
+StreamDemo_next1<int>(thePrimeNumsDemo)
 in
 case- x0 of
 | optn_cons(f0) => JS_PrimeNums_show_some(f0)
@@ -71,7 +71,7 @@ PrimeNums_control_prev
   ((*void*)) =
 let
 val x0 =
-StreamDemo_prev<int>(thePrimeNumsDemo)
+StreamDemo_prev1<int>(thePrimeNumsDemo)
 in
 case+ x0 of
 | optn_nil() => JS_PrimeNums_show_none()

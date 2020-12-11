@@ -39,7 +39,7 @@ Fibonacci_control_next
   ((*void*)) =
 let
 val x0 =
-StreamDemo_next<int>(theFibonacciDemo)
+StreamDemo_next1<int>(theFibonacciDemo)
 in
 case- x0 of
 | optn_cons(f0) => JS_Fibonacci_show_some(f0)
@@ -50,7 +50,7 @@ Fibonacci_control_prev
   ((*void*)) =
 let
 val x0 =
-StreamDemo_prev<int>(theFibonacciDemo)
+StreamDemo_prev1<int>(theFibonacciDemo)
 in
 case+ x0 of
 | optn_nil() => JS_Fibonacci_show_none()

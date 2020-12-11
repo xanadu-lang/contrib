@@ -1,6 +1,6 @@
 s/$StreamDemo.title/QueenPuzzle-Stream/
 s/$StreamDemo.stream_name/Solving the Queen-Puzzle/
-s/$StreamDemo.input_description/The stream of Queen-Puzzle (partial) solutions/
+s/$StreamDemo.input_description/The stream of Queen-Puzzle (partial) solutions based on depth-first search/
 s/$StreamDemo.button/QueenPuzzle_button/
 s/$StreamDemo.control/QueenPuzzle_control/
 s/$StreamDemo.display/QueenPuzzle_display/

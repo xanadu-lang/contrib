@@ -21,6 +21,9 @@ PrimeNums.html
 PrimeNums.html:: ; \
 $(SED) -f myscript.sed ./../template1.html > PrimeNums.html
 ######
+PrimeNums_dats.js:: ; \
+$(XATS2JS) --output-w PrimeNums_dats.js -d ./PrimeNums.dats
+######
 test:: \
 PrimeNums_script_dats.js
 PrimeNums_script_dats.js:: ; \

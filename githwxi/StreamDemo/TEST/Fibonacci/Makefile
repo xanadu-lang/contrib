@@ -21,6 +21,9 @@ Fibonacci.html
 Fibonacci.html:: ; \
 $(SED) -f myscript.sed ./../template1.html > Fibonacci.html
 ######
+Fibonacci_dats.js:: ; \
+$(XATS2JS) --output-w Fibonacci_dats.js -d ./Fibonacci.dats
+######
 test:: \
 Fibonacci_script_dats.js
 Fibonacci_script_dats.js:: ; \

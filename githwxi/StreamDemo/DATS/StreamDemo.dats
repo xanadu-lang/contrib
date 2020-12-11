@@ -19,13 +19,36 @@ StreamDemo_make
 #extern
 fun
 <a:t0>
-StreamDemo_next
+StreamDemo_get_elt
 (demo: StreamDemo(a)) : optn(a)
+(* ****** ****** *)
 #extern
 fun
 <a:t0>
-StreamDemo_prev
-(demo: StreamDemo(a)) : optn(a)
+StreamDemo_get_dir
+(demo: StreamDemo(a)) : sint
+#extern
+fun
+<a:t0>
+StreamDemo_set_dir
+( demo
+: StreamDemo(a), dir:sint): void
+(* ****** ****** *)
+#extern
+fun
+<a:t0>
+StreamDemo_reset
+( demo: StreamDemo(a) ) : void
+#extern
+fun
+<a:t0>
+StreamDemo_next1
+( demo: StreamDemo(a) ) : optn(a)
+#extern
+fun
+<a:t0>
+StreamDemo_prev1
+( demo: StreamDemo(a) ) : optn(a)
 //
 (* ****** ****** *)
 #define none optn_nil
@@ -72,6 +95,22 @@ val dir =
 StreamDemo$dir<>()
 in
 if
+(dir = 0)
+then
+(
+case+ zs of
+|
+list_nil() =>
+strxcon_cons
+(none(), aux0(ys, zs))
+|
+list_cons(z0, _) =>
+strxcon_cons
+( some(z0), aux0(ys, zs) )
+) (* end of [then] *)
+else
+(
+if
 (dir > 0)
 then
 (
@@ -81,14 +120,13 @@ list_nil() =>
 strxcon_cons
 (none(), aux0(ys, zs))
 |
-list_cons(z0, xs) =>
+list_cons(z0, zs) =>
 strxcon_cons
 ( some(z0)
 , aux0(list_cons(z0, ys), zs)
 )
 ) (* end of [then] *)
 else
-(
 case+ ys of
 |
 list_nil() =>
@@ -116,6 +154,34 @@ let
 val dir =
 StreamDemo$dir<>()
 in
+if
+(dir = 0)
+then
+(
+case+ zs of
+|
+list_cons
+( z0, _ ) =>
+strxcon_cons
+( some(z0), aux1(xs, ys, zs) )
+|
+list_nil() =>
+(
+case+ !xs of
+|
+strmcon_nil() =>
+strxcon_cons
+(none(), aux0(ys, zs))
+|
+strmcon_cons(x0, xs) =>
+strxcon_cons
+( some(x0)
+, aux1(xs, ys, list_cons(x0, zs))
+)
+) (* end of [list_nil] *)
+) (* end of [then] *)
+else
+(
 if
 (dir > 0)
 then
@@ -156,8 +222,9 @@ strxcon_cons
 ( some(y0)
 , aux1(xs, ys, list_cons(y0, zs))
 )
+)
 ) (* end of [else] *)
-end ) (*let*) // end of [aux1]
+end ) (*let*) // end of [ aux1 ]
 (* ****** ****** *)
 } (*where*) // end of [StreamDemo_moves]
 
@@ -198,15 +265,11 @@ end // end of [StreamDemo_make]
 //
 impltmp
 <a>(*tmp*)
-StreamDemo_next
+StreamDemo_get_elt
   (demo) = let
 //
 typedef
 data = streax(optn(a))
-//
-val () =
-a0ref_set<int>
-( demo.0, 0+1 )
 //
 val xs =
 a0ref_get<data>(demo.1)
@@ -215,33 +278,65 @@ strxcon_cons(x0, xs) = !xs
 val () =
 a0ref_set<data>(demo.1, xs) in x0
 //
-end (*let*) // end of [StreamDemo_next]
+end // [StreamDemo_get_elt]
 //
+(* ****** ****** *)
 impltmp
 <a>(*tmp*)
-StreamDemo_prev
-  (demo) = let
-//
-typedef
-data = streax(optn(a))
-//
-val () =
-a0ref_set<int>
-( demo.0, 0-1 )
-//
-val xs =
-a0ref_get<data>(demo.1)
-val+
-strxcon_cons(x0, xs) = !xs
-val () =
-a0ref_set<data>(demo.1, xs) in x0
-//
-end (*let*) // end of [StreamDemo_prev]
-//
+StreamDemo_get_dir
+  (demo) =
+(
+  a0ref_get<int>(demo.0)
+)
+impltmp
+<a>(*tmp*)
+StreamDemo_set_dir
+  (demo, dir) =
+(
+  a0ref_set<int>(demo.0, dir)
+)
 (* ****** ****** *)
 
 end // end of [local]
 
+(* ****** ****** *)
+
+impltmp
+<a>(*tmp*)
+StreamDemo_reset(demo) =
+let
+val () =
+StreamDemo_set_dir(demo, 0-1) in loop(demo)
+end where
+{
+fun
+loop(demo): void =
+let
+val opt = StreamDemo_get_elt(demo)
+in
+case+ opt of
+| optn_nil() => () | optn_cons _ => loop(demo)
+end // end of [loop]
+} (*where*) // end of [StreamDemo_reset]
+
+(* ****** ****** *)
+//
+impltmp
+<a>(*tmp*)
+StreamDemo_next1(demo) =
+let
+val () =
+StreamDemo_set_dir(demo, 0+1) in StreamDemo_get_elt(demo)
+end
+//
+impltmp
+<a>(*tmp*)
+StreamDemo_prev1(demo) =
+let
+val () =
+StreamDemo_set_dir(demo, 0-1) in StreamDemo_get_elt(demo)
+end
+//
 (* ****** ****** *)
 
 (* end of [StreamDemo.dats] *)
