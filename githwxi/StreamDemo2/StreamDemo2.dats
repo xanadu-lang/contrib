@@ -1,27 +1,24 @@
+(*
 (* ****** ****** *)
 #include"\
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
 #define
-StreamDemo = "./../StreamDemo"
+STREAMDEMO = "./../StreamDemo"
 #define
-StreamDemo2 = "./../StreamDemo2"
+STREAMDEMO2 = "./../StreamDemo2"
 (* ****** ****** *)
 #staload
-"$(StreamDemo)/SATS/StreamDemo.sats"
+"\
+$(STREAMDEMO2)/StreamDemo2.sats"
+(* ****** ****** *)
 #staload
-"$(StreamDemo2)/SATS/StreamDemo2.sats"
+"$(STREAMDEMO)/SATS/StreamDemo.sats"
+#staload
+"$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
-abstype item_type
-typedef item = item_type
-(* ****** ****** *)
-//
-#extern
-fun
-the_StreamDemo2_data: stream(item)
-//
-(* ****** ****** *)
+*)
 //
 #extern
 fun
@@ -50,9 +47,10 @@ the_StreamDemo2_xprint
 //
 (* ****** ****** *)
 local
-val
-the_demo =
-StreamDemo_make(the_StreamDemo2_data)
+  val
+  the_demo =
+  StreamDemo_make
+  (StreamDemo2_data<>((*void*)))
 in(*in-of-local*)
 (* ****** ****** *)
 //

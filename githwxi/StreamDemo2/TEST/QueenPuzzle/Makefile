@@ -18,18 +18,24 @@ $(SHARE)/runtime/xats2js_xatslib_node.js
 ######
 TARGET=./TARGET
 SOURCE=./../../../StreamDemo2
+######
+STREAMDEMO2_HTML=\
+$(TARGET)/StreamDemo2.html
 STREAMDEMO2_SCRIPT_DATS_JS=\
 $(TARGET)/StreamDemo2_script_dats.js
 ######
 build:: ; \
 $(CAT) \
-$(XATS2JS_PRELUDE) > $(STREAMDEMO2_SCRIPT_DATS_JS)
+$(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
+######
+build:: ; \
+$(CAT) \
+$(XATS2JS_PRELUDE) > $(STREAMDEMO2_SCRIPT_DATS_JS) && \
+$(CAT) \
+$(SOURCE)/StreamDemo2.cats >> $(STREAMDEMO2_SCRIPT_DATS_JS)
 build:: ; \
 $(XATS2JS) 1>/dev/null 2>&1 \
 --output-a $(STREAMDEMO2_SCRIPT_DATS_JS) -d ./QueenPuzzle.dats
-######
-build:: ; \
-$(MAKE) SOURCE=$(SOURCE) TARGET=$(TARGET) -f $(SOURCE)/Makefile
 ######
 
 cleanall:: ; $(RMF) $(TARGET)/StreamDemo2.html

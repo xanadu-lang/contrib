@@ -126,15 +126,25 @@ in auxlst(0) end
 end // end of [local]
 
 (* ****** ****** *)
-
+#define
+STREAMDEMO =
+"./../../../StreamDemo"
+#define
+STREAMDEMO2 =
+"./../../../StreamDemo2"
+(* ****** ****** *)
 #staload
-"./../../StreamDemo2.dats"
-
+"\
+$(STREAMDEMO2)/StreamDemo2.sats"
+#staload
+"$(STREAMDEMO)/SATS/StreamDemo.sats"
+#staload
+"$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
 absimpl item_type = node
 (* ****** ****** *)
 implval
-the_StreamDemo2_data =
+StreamDemo2_data<>() =
 (
 stream_vt2t
 (gtree_dfs_streamize(the_root))
@@ -145,20 +155,23 @@ gtree_node_childlst<node> = qextend
 } (* end of [the_StreamDemo2_data] *)
 (* ****** ****** *)
 impltmp
-the_StreamDemo2_xprint
-  ( nodeopt ) =
+StreamDemo2_xprint<>
+  ( opt ) =
 (
-case+ nodeopt of
+case+ opt of
 | optn_nil() => ()
 | optn_cons(xs) => qprint(xs)
 )
 impltmp
-the_StreamDemo2_pauseq
-  ( nodeopt ) =
+StreamDemo2_pauseq<>
+  ( opt ) =
 (
-case+ nodeopt of
-| optn_cons(xs) => (size(xs) = N) | _ => false
+case+ opt of
+| optn_cons(xs) =>
+  (size(xs) = N) | optn_nil() => false
 )
+(* ****** ****** *)
+#include "$(STREAMDEMO2)/StreamDemo2.dats"
 (* ****** ****** *)
 
 (* end of [QueenPuzzle.dats] *)
