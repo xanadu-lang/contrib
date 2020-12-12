@@ -21,32 +21,13 @@ $(STREAMDEMO2)/StreamDemo2.sats"
 absimpl item_type = nint
 (* ****** ****** *)
 impltmp
-StreamDemo2_data<>() =
-(helper(fromto(2))) where
+StreamDemo2_data<>
+  ((*void*)) = fibo(0, 1) where
 {
 fun
-fromto
-(n: nint): stream(nint) =
-$lazy
-(
-strmcon_cons(n, fromto(n+1))
-)
-fun
-helper
-(xs: stream(nint)): stream(nint) =
-$lazy
-(
-let
-val-
-strmcon_cons(x0, xs) = !xs
-in
-strmcon_cons
-(x0, helper(stream_filter(xs))) where
-{
-impltmp filter$test<nint>(x1) = (x1 % x0 > 0)
-}
-end
-) (* end of [helper] *)
+fibo
+(f0: int, f1: int) =
+$lazy(strmcon_cons(f0, fibo(f1, f0+f1)))
 } (* end of [StreamDemo2_data<>] *)
 (* ****** ****** *)
 impltmp
@@ -64,4 +45,4 @@ StreamDemo2_pauseq<>(opt) = false
 #include "$(STREAMDEMO2)/StreamDemo2.dats"
 (* ****** ****** *)
 
-(* end of [PrimeNums.dats] *)
+(* end of [Fibonacci.dats] *)

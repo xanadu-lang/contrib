@@ -129,6 +129,8 @@ StreamDemo2_control_reset()
 alert("StreamDemo2_control_reset");
 */
 //
+the_StreamDemo2_auto = 0;
+//
 let
 output = "The stream is reset!";
 XATS2JS_the_print_store_clear();
