@@ -141,18 +141,36 @@ $(STREAMDEMO2)/StreamDemo2.sats"
 #staload
 "$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
-absimpl item_type = node
+absimpl item_type = nint
 (* ****** ****** *)
 impltmp
 StreamDemo2_data<>() =
-(
-stream_vt2t
-(gtree_dfs_streamize(the_root))
-) where
+(helper(fromto(2))) where
 {
-impltmp
-gtree_node_childlst<node> = qextend
-} (* end of [the_StreamDemo2_data] *)
+fun
+fromto
+(n: nint): stream(nint) =
+$lazy
+(
+strmcon_cons(n, fromto(n+1))
+)
+fun
+helper
+(xs: stream(nint)): stream(nint) =
+$lazy
+(
+let
+val-
+strmcon_cons(x0, xs) = !xs
+in
+strmcon_cons
+(x0, helper(stream_filter(xs))) where
+{
+impltmp filter$test<nint>(x1) = (x1 % x0 > 0)
+}
+end
+) (* end of [helper] *)
+} (* end of [StreamDemo2_data<>] *)
 (* ****** ****** *)
 impltmp
 StreamDemo2_xprint<>
@@ -160,18 +178,13 @@ StreamDemo2_xprint<>
 (
 case+ opt of
 | optn_nil() => ()
-| optn_cons(xs) => qprint(xs)
+| optn_cons(p0) => print(p0)
 )
+(* ****** ****** *)
 impltmp
-StreamDemo2_pauseq<>
-  ( opt ) =
-(
-case+ opt of
-| optn_cons(xs) =>
-  (size(xs) = N) | optn_nil() => false
-)
+StreamDemo2_pauseq<>(opt) = false
 (* ****** ****** *)
 #include "$(STREAMDEMO2)/StreamDemo2.dats"
 (* ****** ****** *)
 
-(* end of [QueenPuzzle.dats] *)
+(* end of [PrimeNums.dats] *)
