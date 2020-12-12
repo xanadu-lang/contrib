@@ -87,8 +87,8 @@ theQueenPuzzleDemo_solq(opt)
 }
 else
 {
-  alert("A solution!");
   QueenPuzzle_control_pause( );
+  alert("A solution is found!");
 }
 } ; // end of [my_ftimeout]
 setTimeout(my_ftimeout, theDelay);
@@ -184,7 +184,7 @@ theQueenPuzzleDemo_solq(opt)
 )
 {
 setTimeout
-(function(){alert("A solution!");}, 0);
+(function(){alert("A solution is found!");}, 0);
 }
 } // end of [QueenPuzzle_control_next1]
 

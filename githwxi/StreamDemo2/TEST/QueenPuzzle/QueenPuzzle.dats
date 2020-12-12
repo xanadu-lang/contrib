@@ -12,13 +12,6 @@ $(XATS2JSD)\
 $(XATS2JSD)/xatsopt\
 /xatslib/githwxi/DATS/gtree1.dats"
 (* ****** ****** *)
-#define STREAMDEMO = "./../.."
-(* ****** ****** *)
-#staload
-"$(STREAMDEMO)/SATS/StreamDemo.sats"
-#staload
-"$(STREAMDEMO)/DATS/StreamDemo.dats"
-(* ****** ****** *)
 //
 #define N 8
 //
@@ -103,9 +96,7 @@ if n0 > 0 then
 (auxrow(N); auxrest(n0-1))
 //
 in
-auxrows(xs);
-auxrest(N-size(xs));
-println("\n\n");
+auxrows(xs);auxrest(N-size(xs));println("\n\n");
 end (* let *) // end of [qprint]
 
 (* ****** ****** *)
@@ -136,9 +127,14 @@ end // end of [local]
 
 (* ****** ****** *)
 
-val
-theQueenPuzzleDemo =
-StreamDemo_make
+#staload
+"./../../StreamDemo2.dats"
+
+(* ****** ****** *)
+absimpl item_type = node
+(* ****** ****** *)
+implval
+the_StreamDemo2_data =
 (
 stream_vt2t
 (gtree_dfs_streamize(the_root))
@@ -146,62 +142,22 @@ stream_vt2t
 {
 impltmp
 gtree_node_childlst<node> = qextend
-} (* end of [theQueenPuzzleDemo] *)
-
+} (* end of [the_StreamDemo2_data] *)
 (* ****** ****** *)
-//
-#extern
-fun
-theQueenPuzzleDemo_reset
-  ((*void*)): void = $exname()
-#extern
-fun
-theQueenPuzzleDemo_next1
-  ((*void*)): optn(node) = $exname()
-#extern
-fun
-theQueenPuzzleDemo_prev1
-  ((*void*)): optn(node) = $exname()
-//
-implfun
-theQueenPuzzleDemo_reset
-  ((*void*)) =
-StreamDemo_reset<node>(theQueenPuzzleDemo)
-//
-implfun
-theQueenPuzzleDemo_next1
-  ((*void*)) =
-StreamDemo_next1<node>(theQueenPuzzleDemo)
-//
-implfun
-theQueenPuzzleDemo_prev1
-  ((*void*)) =
-StreamDemo_prev1<node>(theQueenPuzzleDemo)
-//
-(* ****** ****** *)
-#extern
-fun
-theQueenPuzzleDemo_solq
-  (opt: optn(node)): bool = $exname()
-//
 impltmp
-theQueenPuzzleDemo_solq
+the_StreamDemo2_xprint
+  ( nodeopt ) =
+(
+case+ nodeopt of
+| optn_nil() => ()
+| optn_cons(xs) => qprint(xs)
+)
+impltmp
+the_StreamDemo2_pauseq
   ( nodeopt ) =
 (
 case+ nodeopt of
 | optn_cons(xs) => (size(xs) = N) | _ => false
-)
-(* ****** ****** *)
-#extern
-fun
-theQueenPuzzleDemo_print
-  (opt: optn(node)): void = $exname()
-impltmp
-theQueenPuzzleDemo_print
-  ( nodeopt ) =
-(
-case+ nodeopt of
-| optn_nil() => () | optn_cons(xs) => qprint(xs)
 )
 (* ****** ****** *)
 

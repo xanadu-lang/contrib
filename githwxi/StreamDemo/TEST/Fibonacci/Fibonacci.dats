@@ -3,10 +3,12 @@
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
-#define
-STREAMDEMO "./../../DATS"
+#define STREAMDEMO = "./../.."
+(* ****** ****** *)
 #staload
-"$(STREAMDEMO)/StreamDemo.dats"
+"$(STREAMDEMO)/SATS/StreamDemo.sats"
+#staload
+"$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
 val
 theFibonacciDemo =

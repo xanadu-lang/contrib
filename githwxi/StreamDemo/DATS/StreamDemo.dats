@@ -1,70 +1,13 @@
 (* ****** ****** *)
+#staload
+"./../SATS/StreamDemo.sats"
+(* ****** ****** *)
 #include"\
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
-abstype
-StreamDemo_type(a:t0)
-sexpdef
-StreamDemo = StreamDemo_type
-(* ****** ****** *)
-//
-#extern
-fun
-<a:t0>
-StreamDemo_make
-(xs: stream(a)): StreamDemo(a)
-//
-(* ****** ****** *)
-#extern
-fun
-<a:t0>
-StreamDemo_get_elt
-(demo: StreamDemo(a)) : optn(a)
-(* ****** ****** *)
-#extern
-fun
-<a:t0>
-StreamDemo_get_dir
-(demo: StreamDemo(a)) : sint
-#extern
-fun
-<a:t0>
-StreamDemo_set_dir
-( demo
-: StreamDemo(a), dir:sint): void
-(* ****** ****** *)
-#extern
-fun
-<a:t0>
-StreamDemo_reset
-( demo: StreamDemo(a) ) : void
-#extern
-fun
-<a:t0>
-StreamDemo_next1
-( demo: StreamDemo(a) ) : optn(a)
-#extern
-fun
-<a:t0>
-StreamDemo_prev1
-( demo: StreamDemo(a) ) : optn(a)
-//
-(* ****** ****** *)
 #define none optn_nil
 #define some optn_cons
-(* ****** ****** *)
-//
-#extern
-fun<>
-StreamDemo$dir(): int
-//
-#extern
-fun
-<a:t0>
-StreamDemo_moves
-(xs: stream(a)): streax(optn(a))
-//
 (* ****** ****** *)
 
 impltmp
