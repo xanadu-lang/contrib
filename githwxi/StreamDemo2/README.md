@@ -5,7 +5,7 @@ Please click [here](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TE
 to see a demo.
 
 ## Files
-- Makefile: It is just for documentation purpose.
+- Makefile: It is just for debugging purpose.
 - StreamDemo2.dats: For the portion of template code.
 - StreamDemo2_.dats: For the portion of non-template code. 
 - StreamDemo2.cats: The extension `cats` is traditionally reserved for a file containing code external to ATS.
