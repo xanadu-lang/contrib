@@ -13,9 +13,9 @@ to see a demo.
 - StreamDemo2.html: For the webpage displaying a given stream (of the type `stream(item)` for some abstract type `item`).
 
 ## Tests
-- TEST/PrimeNums: For enumerating prime numbers
-- TEST/Fibonacci: For enumerating Fibonacci numbers
-- TEST/QueenPuzzle: For animating the depth-first search for solving the 8-queen puzzle.
+- TEST/Fibonacci: For enumerating Fibonacci numbers: 0, 1, 1, 2, 3, 5, 8, 13, ...
+- TEST/PrimeNums: For enumerating prime numbers (generated with the sieve of Eratosthenes)
+- TEST/QueenPuzzle: For animating the process of depth-first search for solving the 8-queen puzzle.
   
 ## Dependencies: Some
 
