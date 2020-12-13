@@ -14,11 +14,11 @@ to see a demo.
 
 ## Tests
 - TEST/Fibonacci: For enumerating Fibonacci numbers: 0, 1, 1, 2, 3, 5, 8, 13, ...
-  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/Fibonacci/2020-12-12/.)
+  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/Fibonacci/2020-12-12/.))
 - TEST/PrimeNums: For enumerating prime numbers (generated with the sieve of Eratosthenes)
-  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/PrimeNums/2020-12-12/.)
+  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/PrimeNums/2020-12-12/.))
 - TEST/QueenPuzzle: For animating the process of depth-first search for solving the 8-queen puzzle.
-  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/QueenPuzzle/2020-12-12/.)  
+  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/QueenPuzzle/2020-12-12/.))
 
 ## Dependencies: Some
 
