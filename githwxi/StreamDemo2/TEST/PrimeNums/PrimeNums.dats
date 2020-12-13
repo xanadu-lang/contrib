@@ -12,7 +12,7 @@ STREAMDEMO2 =
 (* ****** ****** *)
 #staload
 "\
-$(STREAMDEMO2)/StreamDemo2.sats"
+$(STREAMDEMO2)/StreamDemo2.dats"
 #staload
 "$(STREAMDEMO)/SATS/StreamDemo.sats"
 #staload
@@ -21,7 +21,18 @@ $(STREAMDEMO2)/StreamDemo2.sats"
 absimpl item_type = nint
 (* ****** ****** *)
 impltmp
-StreamDemo2_data<>() =
+StreamDemo2_title<>() =
+  "StreamDemo2-PrimeNums"
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream_name<>() =
+  "Enumerating Prime Numbers"
+impltmp
+StreamDemo2_input_descript<>() =
+  "The stream of prime numbers: 2, 3, 5, 7, 11, 13, ..."
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream<>() =
 (helper(fromto(2))) where
 {
 fun
@@ -47,7 +58,7 @@ impltmp filter$test<nint>(x1) = (x1 % x0 > 0)
 }
 end
 ) (* end of [helper] *)
-} (* end of [StreamDemo2_data<>] *)
+} (* end of [StreamDemo2_stream<>] *)
 (* ****** ****** *)
 impltmp
 StreamDemo2_xprint<>
@@ -61,7 +72,7 @@ case+ opt of
 impltmp
 StreamDemo2_pauseq<>(opt) = false
 (* ****** ****** *)
-#include "$(STREAMDEMO2)/StreamDemo2.dats"
+#include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
 
 (* end of [PrimeNums.dats] *)

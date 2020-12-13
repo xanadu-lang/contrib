@@ -1,77 +1,67 @@
-(*
 (* ****** ****** *)
 #include"\
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
-#define
-STREAMDEMO = "./../StreamDemo"
-#define
-STREAMDEMO2 = "./../StreamDemo2"
+abstype item_type
+typedef item = item_type
 (* ****** ****** *)
-#staload
-"\
-$(STREAMDEMO2)/StreamDemo2.sats"
-(* ****** ****** *)
-#staload
-"$(STREAMDEMO)/SATS/StreamDemo.sats"
-#staload
-"$(STREAMDEMO)/DATS/StreamDemo.dats"
-(* ****** ****** *)
-*)
-//
 #extern
-fun
-the_StreamDemo2_reset
-  ((*void*)): void = $exname()
-#extern
-fun
-the_StreamDemo2_next1
-  ((*void*)): optn(item) = $exname()
-#extern
-fun
-the_StreamDemo2_prev1
-  ((*void*)): optn(item) = $exname()
-//
-(* ****** ****** *)
-//
-#extern
-fun
-the_StreamDemo2_pauseq
-  (opt: optn(item)): bool = $exname()
-//
-#extern
-fun
-the_StreamDemo2_xprint
-  (opt: optn(item)): void = $exname()
-//
-(* ****** ****** *)
-local
-  val
-  the_demo =
-  StreamDemo_make
-  (StreamDemo2_data<>((*void*)))
-in(*in-of-local*)
-(* ****** ****** *)
-//
-implfun
-the_StreamDemo2_reset
-((*void*)) = StreamDemo_reset(the_demo)
-//
-implfun
-the_StreamDemo2_next1
-((*void*)) = StreamDemo_next1(the_demo)
-//
-implfun
-the_StreamDemo2_prev1
-((*void*)) = StreamDemo_prev1(the_demo)
-//
-(* ****** ****** *)
-end // end of [local]
-(* ****** ****** *)
+fun<>
+StreamDemo2_title
+  ((*void*)): string
 impltmp
-the_StreamDemo2_pauseq(opt) = StreamDemo2_pauseq<>(opt)
-impltmp
-the_StreamDemo2_xprint(opt) = StreamDemo2_xprint<>(opt)
+<>(*tmp*)
+StreamDemo2_title
+( ) = "StreamDemo2_title()"
 (* ****** ****** *)
+#extern
+fun<>
+StreamDemo2_stream_name
+  ((*void*)): string
+impltmp
+<>(*tmp*)
+StreamDemo2_stream_name
+( ) = "StreamDemo2_stream_name()"
+(* ****** ****** *)
+#extern
+fun<>
+StreamDemo2_input_descript
+  ((*void*)): string
+impltmp
+<>(*tmp*)
+StreamDemo2_input_descript
+( ) = "StreamDemo2_input_descript()"
+(* ****** ****** *)
+#extern
+fun<>
+StreamDemo2_stream
+ ( (*void*) ): stream(item)
+(* ****** ****** *)
+//
+#extern
+fun<>
+StreamDemo2_pauseq
+( opt: optn(item) ) : bool
+//
+impltmp
+<>(*tmp*)
+StreamDemo2_pauseq(opt) = false
+//
+(* ****** ****** *)
+//
+#extern
+fun<>
+StreamDemo2_xprint
+( opt: optn(item) ) : void
+//
+impltmp
+<>(*tmp*)
+StreamDemo2_xprint(opt) =
+{
+  val () = print("StreamDemo2_xprint(...)")
+}
+//
+(* ****** ****** *)
+
 (* end of [StreamDemo2.dats] *)

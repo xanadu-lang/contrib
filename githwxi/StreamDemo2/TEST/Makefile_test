@@ -1,0 +1,31 @@
+######
+#
+# Makefile for testing
+#
+######
+SED=sed
+CAT=cat
+CPF=cp -f
+ECHO=echo
+MAKE=make
+######
+XATS2JS="${XATS2JSD}/bin/xats2js"
+######
+# all:: \
+# StreamDemo2
+# StreamDemo2:: ; \
+# $(XATS2JS) -d ./../StreamDemo2.dats > /dev/null
+# all:: \
+# StreamDemo2_
+# StreamDemo2_:: ; \
+# $(XATS2JS) -d ./../StreamDemo2_.dats > /dev/null
+######
+cleanall:: ; $(MAKE) -C Fibonacci cleanall
+cleanall:: ; $(MAKE) -C PrimeNums cleanall
+cleanall:: ; $(MAKE) -C QueenPuzzle cleanall
+######
+# export XATS2JSD=${XATS2JSD}
+# export XATSHOME=$(XATS2JSD)/xatsopt
+######
+
+############ end of [Makefile_test] ############

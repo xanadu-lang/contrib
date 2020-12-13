@@ -1,6 +1,39 @@
 /* ****** ****** */
+{
+document.title =
+the_StreamDemo2_title();
+}
+//
+{
 let
-StreamDemo2_display =
+myelmnt =
+document.getElementById
+("StreamDemo2_stream_name");
+myelmnt.innerHTML =
+the_StreamDemo2_stream_name();
+}
+//
+{
+let
+myelmnt =
+document.getElementById
+("StreamDemo2_input_descript");
+myelmnt.innerHTML =
+the_StreamDemo2_input_descript();
+}
+//
+/* ****** ****** */
+function
+the_StreamDemo2_display_update()
+{
+let
+output =
+XATS2JS_the_print_store_join();
+XATS2JS_the_print_store_clear();
+the_StreamDemo2_display.innerHTML = output;
+}
+let
+the_StreamDemo2_display =
 document.getElementById("StreamDemo2_display");
 /* ****** ****** */
 //
@@ -71,10 +104,7 @@ if
 let opt =
 the_StreamDemo2_next1();
 the_StreamDemo2_xprint(opt);
-let output =
-XATS2JS_the_print_store_join();
-XATS2JS_the_print_store_clear();
-StreamDemo2_display.innerHTML = output;
+the_StreamDemo2_display_update();
 //
 let
 my_ftimeout = function()
@@ -132,9 +162,9 @@ alert("StreamDemo2_control_reset");
 the_StreamDemo2_auto = 0;
 //
 let
-output = "The stream is reset!";
+text = "The stream is reset!";
 XATS2JS_the_print_store_clear();
-StreamDemo2_display.innerHTML = output;
+the_StreamDemo2_display.innerHTML = text;
 //
 let _void1_ = the_StreamDemo2_reset();
 //
@@ -174,10 +204,7 @@ alert("StreamDemo2_control_next1");
 let opt =
 the_StreamDemo2_next1();
 the_StreamDemo2_xprint(opt);
-let output =
-XATS2JS_the_print_store_join();
-XATS2JS_the_print_store_clear();
-StreamDemo2_display.innerHTML = output;
+the_StreamDemo2_display_update();
 //
 button_enable(StreamDemo2_button_reset);
 button_enable(StreamDemo2_button_prev1);
@@ -205,10 +232,7 @@ alert("StreamDemo2_control_prev1");
 let opt =
 the_StreamDemo2_prev1();
 the_StreamDemo2_xprint(opt);
-let output =
-XATS2JS_the_print_store_join();
-XATS2JS_the_print_store_clear();
-StreamDemo2_display.innerHTML = output;
+the_StreamDemo2_display_update();
 //
 button_enable(StreamDemo2_button_reset);
 button_enable(StreamDemo2_button_next1);

@@ -135,7 +135,7 @@ STREAMDEMO2 =
 (* ****** ****** *)
 #staload
 "\
-$(STREAMDEMO2)/StreamDemo2.sats"
+$(STREAMDEMO2)/StreamDemo2.dats"
 #staload
 "$(STREAMDEMO)/SATS/StreamDemo.sats"
 #staload
@@ -144,7 +144,18 @@ $(STREAMDEMO2)/StreamDemo2.sats"
 absimpl item_type = node
 (* ****** ****** *)
 impltmp
-StreamDemo2_data<>() =
+StreamDemo2_title<>() =
+  "StreamDemo2-QueenPuzzle"
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream_name<>() =
+  "Solving the 8 Queen-Puzzle"
+impltmp
+StreamDemo2_input_descript<>() =
+  "The stream of 8 Queen-Puzzle (partial) solutions based on depth-first search"
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream<>() =
 (
 stream_vt2t
 (gtree_dfs_streamize(the_root))
@@ -152,7 +163,7 @@ stream_vt2t
 {
 impltmp
 gtree_node_childlst<node> = qextend
-} (* end of [the_StreamDemo2_data] *)
+} (* end of [StreamDemo2_stream<>] *)
 (* ****** ****** *)
 impltmp
 StreamDemo2_xprint<>
@@ -171,7 +182,7 @@ case+ opt of
   (size(xs) = N) | optn_nil() => false
 )
 (* ****** ****** *)
-#include "$(STREAMDEMO2)/StreamDemo2.dats"
+#include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
 
 (* end of [QueenPuzzle.dats] *)
