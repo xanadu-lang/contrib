@@ -2,10 +2,6 @@
 #staload
 "./../SATS/StreamDemo.sats"
 (* ****** ****** *)
-#include"\
-$(XATS2JSD)\
-/share/xats2js_prelude.hats"
-(* ****** ****** *)
 #define none optn_nil
 #define some optn_cons
 (* ****** ****** *)

@@ -20,6 +20,10 @@ XATS2JS="${XATS2JSD}/bin/xats2js"
 # StreamDemo2_:: ; \
 # $(XATS2JS) -d ./../StreamDemo2_.dats > /dev/null
 ######
+test:: ; $(MAKE) -C Fibonacci
+test:: ; $(MAKE) -C PrimeNums
+test:: ; $(MAKE) -C QueenPuzzle
+######
 cleanall:: ; $(MAKE) -C Fibonacci cleanall
 cleanall:: ; $(MAKE) -C PrimeNums cleanall
 cleanall:: ; $(MAKE) -C QueenPuzzle cleanall

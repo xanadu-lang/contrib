@@ -1,8 +1,4 @@
 (* ****** ****** *)
-#include"\
-$(XATS2JSD)\
-/share/xats2js_prelude.hats"
-(* ****** ****** *)
 abstype item_type
 typedef item = item_type
 (* ****** ****** *)
