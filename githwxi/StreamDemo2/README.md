@@ -1,15 +1,18 @@
 # StreamDemo2
 
-For displaying a stream.
+For displaying a stream in a webpage.
 Please click [here](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/QueenPuzzle/2020-12-12/.)
 to see a demo.
+
+## Genre
+- It targets JavaScript (JS).
 
 ## Files
 - Makefile: It is just for debugging purpose.
 - StreamDemo2.dats: For the portion of template code.
 - StreamDemo2_.dats: For the portion of non-template code. 
 - StreamDemo2.cats: The extension `cats` is traditionally reserved for a file containing code external to ATS.
-  In this case, the external code is written in JavaScript (JS).
+  In this case, the external code is written in JS.
 - StreamDemo2.html: For the webpage displaying a given stream (of the type `stream(item)` for some abstract type `item`).
 
 ## Tests
