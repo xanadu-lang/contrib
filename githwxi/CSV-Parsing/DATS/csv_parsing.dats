@@ -1,13 +1,18 @@
 (* ****** ****** *)
 #staload
-"./../SATS/csv_parsing.sats"
+UN =
+"prelude/SATS/unsafe.sats"
 (* ****** ****** *)
+#staload
+"./../SATS/csv_parsing.sats"
 (* ****** ****** *)
 //
 impltmp
 <>(*tmp*)
-csv_parse_line$comma() =
-$UN.cast{sintgte(1)}(sint(','))
+csv_parse_line$comma
+((*void*)) =
+$UN.cast01
+{sintgte(1)}(sint(','))
 //
 (*
 //
@@ -15,16 +20,20 @@ $UN.cast{sintgte(1)}(sint(','))
 //
 impltmp
 <>(*tmp*)
-csv_parse_line$comma() =
-$UN.cast{sintgte(1)}(sint('\t'))
+csv_parse_line$comma
+((*void*)) =
+$UN.cast01
+{sintgte(1)}(sint('\t'))
 *)
 //
 (* ****** ****** *)
 //
 impltmp
 <>(*tmp*)
-csv_parse_line$dquot() =
-$UN.cast{sintgte(1)}(sint('"'))
+csv_parse_line$dquot
+((*void*)) =
+$UN.cast01
+{sintgte(1)}( sint('"') )
 //
 (* ****** ****** *)
 
@@ -37,32 +46,33 @@ char_make_sint
 char_ord
 sint_make_char
 //
-extern
+#extern
 fun<>
 getpos(): int
 //
-extern
+#extern
 fun<>
 is_end(): bool
 //
-extern
+#extern
 fun<>
 char_get0(): int
-extern
+#extern
 fun<>
 char_get1(): int
-extern
+#extern
 fun<>
 char_incby1(): void
-extern
+#extern
 fun<>
 char_getinc(): int
 //
-extern
+#extern
 fun<>
 sintgte_check
 {n:int}
-(int, n:int(n)): sintgte(n)
+( x: int
+, n: int(n)): sintgte(n)
 //
 in (* in-of-local *)
 //
@@ -73,21 +83,21 @@ csv_parse_line_nerr
 //
 var _i_: int = 0
 //
-val p_i = (addr@_i_)
+val p_i = $addr(_i_)
 //
 fun
 get_i() =
-$UN.cptr_get(p_i)
+$UN.p2tr_get(p_i)
 and
 inc_i() = let
 val i0 =
-  $UN.cptr_get(p_i)
+  $UN.p2tr_get(p_i)
 in
-$UN.cptr_set(p_i, i0+1)
+$UN.p2tr_set(p_i, i0+1)
 end
 and
 set_i(i0) =
-$UN.cptr_set(p_i, i0+0)
+$UN.p2tr_set(p_i, i0+0)
 //
 (* ****** ****** *)
 //
@@ -107,7 +117,9 @@ char_get0<>() = let
   val i0 = sintgte_check(i0, 0)
 //
 in
-  if i0 < len0 then char_ord(line[i0]) else (~1)
+if
+(i0 < len0)
+then char_ord(line[i0]) else (-1)
 end // end of [char_get0]
 impltmp
 char_get1<>() = let
@@ -115,15 +127,23 @@ char_get1<>() = let
   val i1 = sintgte_check(i0+1, 0)
 //
 in
-  if i1 < len0 then char_ord(line[i1]) else (~1)
+if
+(i1 < len0)
+then char_ord(line[i1]) else (-1)
 end // end of [char_get1]
+
+(* ****** ****** *)
+
 impltmp
 char_getinc<>() = let
   val i0 = get_i()
   val i0 = sintgte_check(i0, 0)
 //
 in
-  if i0 < len0 then (inc_i(); char_ord(line[i0])) else (~1)
+if
+(i0 < len0)
+then
+(inc_i(); char_ord(line[i0])) else (-1)
 end // end of [char_getinc]
 
 (* ****** ****** *)
@@ -172,13 +192,16 @@ end // end of [parse_char]
 
 (* ****** ****** *)
 
-vtypedef
+vwtpdef
 chars_vt = list_vt(char)
 
+(* ****** ****** *)
+//
 fun
 string_vt_sbfmk(cs) =
-string_vt_make_rlist_vt(cs)
-
+string_vt_make_list_vt
+  ( list_vt_reverse(cs) )
+//
 (* ****** ****** *)
 
 fun
@@ -211,12 +234,13 @@ end // end of [parse_item]
 
 and
 parse_item_loop1
-( sbf0: chars_vt 
-, nerr: &int >> int
+( sbf0
+: chars_vt 
+, nerr
+: &int >> int
 ) : string_vt = let
 //
-val c1 =
-  g1ofg0(char_get0())
+val c1 = char_get0()
 //
 in
 //
@@ -336,7 +360,7 @@ end // end of [parse_item_loop2]
 
 (* ****** ****** *)
 
-vtypedef
+vwtpdef
 res_vt = list_vt(string_vt)
 
 (* ****** ****** *)
