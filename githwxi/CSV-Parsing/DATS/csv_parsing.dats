@@ -67,13 +67,6 @@ char_incby1(): void
 fun<>
 char_getinc(): int
 //
-#extern
-fun<>
-sintgte_check
-{n:int}
-( x: int
-, n: int(n)): sintgte(n)
-//
 in (* in-of-local *)
 //
 impltmp
@@ -104,62 +97,80 @@ $UN.p2tr_set(p_i, i0+0)
 val len0 = length(line)
 //
 (* ****** ****** *)
-
+//
+fun
+sintgte_check
+{n:int}
+( x
+: sint
+, n
+: sint(n))
+: sintgte(n) = (x)
+//
+(* ****** ****** *)
 impltmp
 getpos<>() = get_i()
 //
 impltmp
 is_end<>() = get_i() >= len0
 //
-impltmp
-char_get0<>() = let
-  val i0 = get_i()
-  val i0 = sintgte_check(i0, 0)
-//
-in
-if
-(i0 < len0)
-then char_ord(line[i0]) else (-1)
-end // end of [char_get0]
-impltmp
-char_get1<>() = let
-  val i0 = get_i()
-  val i1 = sintgte_check(i0+1, 0)
-//
-in
-if
-(i1 < len0)
-then char_ord(line[i1]) else (-1)
-end // end of [char_get1]
-
 (* ****** ****** *)
-
 impltmp
-char_getinc<>() = let
-  val i0 = get_i()
-  val i0 = sintgte_check(i0, 0)
+char_get0<>() =
+let
+val
+i0 = get_i()
+val
+i0 =
+sintgte_check(i0, 0)
 //
 in
 if
 (i0 < len0)
 then
-(inc_i(); char_ord(line[i0])) else (-1)
-end // end of [char_getinc]
-
+char_ord(line[i0]) else (-1)
+end
+(* ****** ****** *)
+impltmp
+char_get1<>() =
+let
+val
+i0 = get_i()
+val
+i1 =
+sintgte_check(i0+1, 0)
+//
+in
+if
+(i1 < len0)
+then
+char_ord(line[i1]) else (-1)
+end
 (* ****** ****** *)
 
 impltmp
-<>(*tmp*)
-sintgte_check(x, n) = x
+char_getinc<>() =
+let
+//
+val i0 = get_i()
+//
+val i0 =
+sintgte_check(i0, 0)
+//
+in
+if
+(i0 < len0)
+then
+( inc_i()
+; char_ord(line[i0])) else (-1)
+end // end of [char_getinc]
 
 (* ****** ****** *)
 //
 val
-COMMA =
-csv_parse_line$comma<>()
+COMMA = csv_parse_line$comma<>()
 and
-DQUOT =
-csv_parse_line$dquot<>()
+DQUOT = csv_parse_line$dquot<>()
 //
 (* ****** ****** *)
 
@@ -417,16 +428,161 @@ end // end of [parse_itemlst]
 (* ****** ****** *)
 //
 in
-let
-val
-res0 =
-parse_itemlst(nerr) in list_vt_reverse<string_vt>(res0)
-end
+  let
+  val
+  res0 = parse_itemlst(nerr)
+  in
+  list_vt_reverse<string_vt>(res0)
+  end
 end // end of [csv_parse_line_nerr]
 //
 (* ****** ****** *)
 
-end // end of [local]
+end // end of [local] // for [csv_parse_line_nerr]
+
+(* ****** ****** *)
+//
+(*
+#extern
+fun{}
+stream_vt_csv_line_repair
+( lines
+: stream_vt(string_vt)): stream_vt(string_vt)
+*)
+//
+local
+//
+#define
+char_chr
+char_make_sint
+#define
+char_ord
+sint_make_char
+//
+in(*in-of-local*)
+
+impltmp
+<>(*tmp*)
+stream_vt_csv_line_repair
+  (xs) =
+( aux0(xs) ) where
+{
+//
+val
+DQUOT =
+csv_parse_line$dquot<>()
+//
+fun
+string_ncs
+(cs: !string_vt): int =
+(
+glseq_foldl1(cs, 0)
+) where
+{
+  typedef x0 = char
+  typedef r0 = sint
+  impltmp
+  foldl1$fopr<x0><r0>
+  (r, c) =
+  if char_ord(c) != DQUOT then r else r+1
+}
+//
+fun
+isevn
+( cs
+: !string_vt): bool = (string_ncs(cs) % 2 = 0)
+fun
+isodd
+( cs
+: !string_vt): bool = (string_ncs(cs) % 2 != 0)
+//
+fun
+aux0
+( xs
+: stream_vt(string_vt)
+) : stream_vt(string_vt) =
+$llazy
+(
+$free(xs);
+case+ !xs of
+| ~
+strmcon_vt_nil
+  () => strmcon_vt_nil()
+| ~
+strmcon_vt_cons
+  (x0, xs) => !(aux1(x0, xs))
+)
+and
+aux1
+( x0: string_vt
+, xs
+: stream_vt(string_vt)
+) : stream_vt(string_vt) =
+$llazy
+(
+g_free(x0); $free(xs);
+(
+if
+isodd(x0)
+then !(aux2(x0, xs))
+else strmcon_vt_cons(x0, aux0(xs))
+)
+)
+//
+and
+aux2
+( x0: string_vt
+, xs
+: stream_vt(string_vt)
+) : stream_vt(string_vt) =
+let
+fun
+stradd
+( x0
+: string_vt
+, x1
+: string_vt): string_vt =
+let
+val
+res =
+string_vt_append(x0, x1)
+in
+//
+let
+val () = g_free(x0)
+val () = g_free(x1) in res end
+//
+end
+in
+$llazy
+(
+g_free(x0); $free(xs);
+case+ !xs of
+| ~
+strmcon_vt_nil() =>
+strmcon_vt_sing(x0) // missing DQUOTE
+| ~
+strmcon_vt_cons(x1, xs) =>
+(
+  if
+  isevn(x1)
+  then
+  (
+    !(aux2(stradd(x0,x1), xs))
+  )
+  else
+  let
+    val x2 = stradd(x0,x1)
+  in
+    strmcon_vt_cons(x2, aux0(xs))
+  end
+)
+)
+end
+//
+} (* end of [stream_vt_csv_line_repair] *)
+
+end // end of [local] // for [stream_vt_csv_line_repair]
 
 (* ****** ****** *)
 
