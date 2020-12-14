@@ -520,7 +520,7 @@ aux1
 ) : stream_vt(string_vt) =
 $llazy
 (
-g_free(x0); $free(xs);
+free(x0); $free(xs);
 (
 if
 isodd(x0)
@@ -549,14 +549,14 @@ string_vt_append(x0, x1)
 in
 //
 let
-val () = g_free(x0)
-val () = g_free(x1) in res end
+val () = free(x0)
+val () = free(x1) in res end
 //
 end
 in
 $llazy
 (
-g_free(x0); $free(xs);
+free(x0); $free(xs);
 case+ !xs of
 | ~
 strmcon_vt_nil() =>

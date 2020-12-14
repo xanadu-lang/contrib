@@ -29,8 +29,9 @@ csv_parse_line_nerr
 , nerr: &int >> _): list_vt(string_vt)
 (* ****** ****** *)
 //
-// HX:
-// For handling line-breaks
+(*
+For handling line-breaks
+*)
 //
 fun<>
 stream_vt_csv_line_repair
