@@ -8,7 +8,6 @@ to see a demo.
 - It is generic.
 
 ## Files
-- Makefile: It is just for debugging purpose.
 - SATS/StreamDemo.sats: For template interfaces
 - DATS/StreamDemo.dats: For template implementations
 
