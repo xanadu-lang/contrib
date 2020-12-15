@@ -44,10 +44,26 @@ iforeach0(lines)
   <string_vt>
   (i0, line) =
   let
+    var nerr: int = 0
     val
     line = string_vt2t(line)
+    val
+    items =
+    $CSV.csv_parse_line_nerr(line, nerr)
+    fun
+    print_items(xs) =
+    (
+    case+ xs of
+    | ~list_vt_nil() => ()
+    | ~list_vt_cons(x0, xs) =>
+       (
+       print_items(xs)) where
+       {
+       val () = println(string_vt2t(x0))
+       }
+    )
   in
-    println("(line#", i0, ")\t", line)
+    println("line#", i0, ":"); print_items(items)
   end
 }
 end (* let *) // end-of-val
