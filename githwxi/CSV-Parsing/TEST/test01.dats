@@ -20,9 +20,11 @@ $(XATS2JSD)\
 "xatslib\
 /libc/DATS/CATS/JS/Node/basics.dats"
 (* ****** ****** *)
-implfun
+impltmp
 {a:vt} // HX: This is
 g_free<a>(x0) = () // for JS!!!
+impltmp // HX: This is
+string_vt_free<>(cs) = () // for JS!!!
 (* ****** ****** *)
 
 val () =
@@ -59,7 +61,7 @@ iforeach0(lines)
        (
        print_items(xs)) where
        {
-       val () = println(string_vt2t(x0))
+       val () = (print0(x0); println())
        }
     )
   in
