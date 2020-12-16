@@ -8,7 +8,7 @@ to see a demo.
 - It targets JavaScript (JS).
 
 ## Files
-- Makefile: It is just for debugging purpose.
+- Makefile: Just for debugging purpose.
 - StreamDemo2.dats: For the portion of template code.
 - StreamDemo2_.dats: For the portion of non-template code. 
 - StreamDemo2.cats: The extension `cats` is traditionally reserved for a file containing code external to ATS.
