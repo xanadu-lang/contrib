@@ -24,8 +24,15 @@ csv_parse_line$dquot(): sintgte(1)
 //
 (* ****** ****** *)
 fun<>
+csv_parse_line_opt
+( line
+: string)
+: optn_vt(list_vt(string_vt))
+(* ****** ****** *)
+fun<>
 csv_parse_line_nerr
-( line: string
+( line
+: string
 , nerr: &int >> _): list_vt(string_vt)
 (* ****** ****** *)
 //

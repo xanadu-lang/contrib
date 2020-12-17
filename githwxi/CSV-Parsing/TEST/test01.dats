@@ -41,14 +41,13 @@ in
 iforeach0(lines)
 ) where
 {
+  vwtpdef x0 = string_vt
   impltmp
-  iforeach0$work
-  <string_vt>
-  (i0, line) =
+  iforeach0$work<x0>(i0, x0) =
   let
     var nerr: int = 0
     val
-    line = string_vt2t(line)
+    line = string_vt2t(x0)
     val
     items =
     $CSV.csv_parse_line_nerr(line, nerr)
@@ -63,7 +62,7 @@ iforeach0(lines)
        {
        val () = (print0(x0); println())
        }
-    )
+    ) (* end of [print_items] *)
   in
     println("line#", i0, ":"); print_items(items)
   end

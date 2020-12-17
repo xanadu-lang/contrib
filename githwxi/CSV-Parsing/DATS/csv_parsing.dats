@@ -37,6 +37,32 @@ $UN.cast01
 //
 (* ****** ****** *)
 
+implement
+<>(*tmp*)
+csv_parse_line_opt
+  (line) =
+let
+//
+var
+nerr: int = 0
+//
+val itms =
+csv_parse_line_nerr(line, nerr)
+//
+in
+if
+(nerr <= 0)
+then
+optn_vt_cons(itms)
+else
+let
+val () =
+free(itms) in optn_vt_nil()
+end // end of [else] // end-of-if
+end // end of [csv_parse_line_opt]
+
+(* ****** ****** *)
+
 local
 //
 #define
