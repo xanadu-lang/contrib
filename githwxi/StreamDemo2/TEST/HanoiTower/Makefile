@@ -13,6 +13,8 @@ XATS2JS="${XATS2JSD}/bin/xats2js"
 ######
 XATS2JS_PRELUDE=\
 $(SHARE)/runtime/xats2js_prelude.js
+XATS2JS_PRELUDE_NODE=\
+$(SHARE)/runtime/xats2js_prelude_node.js
 XATS2JS_XATSLIB_NODE=\
 $(SHARE)/runtime/xats2js_xatslib_node.js
 ######
@@ -24,15 +26,18 @@ $(TARGET)/StreamDemo2.html
 STREAMDEMO2_SCRIPT_DATS_JS=\
 $(TARGET)/StreamDemo2_script_dats.js
 ######
-build:: ; \
-$(CAT) \
-$(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
+# test:: ; \
+# $(XATS2JS) -d ./HanoiTower.dats
+######
+# build:: ; \
+# $(CAT) \
+# $(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
 ######
 build:: ; \
 $(CAT) \
 $(XATS2JS_PRELUDE) > $(STREAMDEMO2_SCRIPT_DATS_JS) && \
 $(CAT) \
-$(SOURCE)/StreamDemo2.cats >> $(STREAMDEMO2_SCRIPT_DATS_JS)
+$(XATS2JS_PRELUDE_NODE) >> $(STREAMDEMO2_SCRIPT_DATS_JS)
 build:: ; \
 $(XATS2JS) 1>/dev/null 2>&1 \
 --output-a $(STREAMDEMO2_SCRIPT_DATS_JS) -d ./HanoiTower.dats
