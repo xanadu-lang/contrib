@@ -97,5 +97,113 @@ val the_moves_4 = HanoiTower_play(4)
 val ( (*void*) ) = println("the_moves_4: ", the_moves_4)
 *)
 (* ****** ****** *)
+#define N = 8
+(* ****** ****** *)
+#define
+STREAMDEMO =
+"./../../../StreamDemo"
+#define
+STREAMDEMO2 =
+"./../../../StreamDemo2"
+(* ****** ****** *)
+#staload
+"\
+$(STREAMDEMO2)/StreamDemo2.dats"
+#staload
+"$(STREAMDEMO)/SATS/StreamDemo.sats"
+#staload
+"$(STREAMDEMO)/DATS/StreamDemo.dats"
+(* ****** ****** *)
+absimpl item_type =
+(list(int), list(int), list(int))
+(* ****** ****** *)
+impltmp
+StreamDemo2_title<>() =
+  "StreamDemo2-HanoiTower"
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream_name<>() =
+  "Solving the HanoiTower Puzzle of 8"
+impltmp
+StreamDemo2_input_descript<>() =
+  "The stream of moves for solving the HanoiTower Puzzle of 8"
+(* ****** ****** *)
+impltmp
+StreamDemo2_stream<>() =
+let
+val p1 =
+auxlst(0) where
+{
+fun
+auxlst
+( i0
+: int )
+: list(int) =
+(
+if
+(i0 >= N)
+then
+list_nil(*void*)
+else
+list_cons(i0+1, auxlst(i0+1))
+)
+} (*where*) // end-of-val
+//
+val p2 = list_nil(*void*)
+val p3 = list_nil(*void*)
+//
+val poles =
+a1ref_make_list
+(
+list_cons
+( p1
+, list_cons
+  ( p2
+  , list_cons(p3, list_nil()))
+)
+)
+//
+val moves = HanoiTower_play(N)
+//
+in
+(
+  auxmain(moves)) where
+{
+fun
+auxmain
+( mvs
+: list(int2)): stream(item) =
+$lazy
+(
+case- mvs of
+|
+list_nil() => !
+(
+stream_sing
+((poles[0], poles[1], poles[2]))
+)
+|
+list_cons(mv0, mvs) =>
+let
+val i0 = mv0.0-1
+val j0 = mv0.1-1
+val pi = poles[i0]
+val pj = poles[j0]
+val x0 =
+  list_head_exn(pi)
+val () =
+  poles[i0] :=
+  list_tail_exn(pi)
+val () =
+  poles[j0] := list_cons(x0, pj)
+in
+strmcon_cons
+((poles[0], poles[1], poles[2]), auxmain(mvs))
+end // end of [let] // list_cons
+)
+}
+end // end of [StreamDemo2_stream<>()]
+
+(* ****** ****** *)
 
 (* end of [HanoiTower.dats] *)
