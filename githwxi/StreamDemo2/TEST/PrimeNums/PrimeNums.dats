@@ -18,7 +18,9 @@ $(STREAMDEMO2)/StreamDemo2.dats"
 #staload
 "$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
-absimpl item_type = nint
+absimpl
+item_type =
+(nint, nint)
 (* ****** ****** *)
 impltmp
 StreamDemo2_title<>() =
@@ -33,7 +35,9 @@ StreamDemo2_input_descript<>() =
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>() =
-(helper(fromto(2))) where
+(
+helper
+(0, fromto(2))) where
 {
 fun
 fromto
@@ -44,7 +48,11 @@ strmcon_cons(n, fromto(n+1))
 )
 fun
 helper
-(xs: stream(nint)): stream(nint) =
+(
+i0 : nint
+,
+xs :
+stream(nint)): stream(item) =
 $lazy
 (
 let
@@ -52,9 +60,12 @@ val-
 strmcon_cons(x0, xs) = !xs
 in
 strmcon_cons
-(x0, helper(stream_filter(xs))) where
+( (i0, x0)
+, helper
+  (i0+1, stream_filter(xs))) where
 {
-impltmp filter$test<nint>(x1) = (x1 % x0 > 0)
+impltmp
+filter$test<nint>(x1) = (x1 % x0 > 0)
 }
 end
 ) (* end of [helper] *)
@@ -66,7 +77,8 @@ StreamDemo2_xprint<>
 (
 case+ opt of
 | optn_nil() => ()
-| optn_cons(p0) => print(p0)
+| optn_cons(ip) =>
+  print("prime(", ip.0, ") = ", ip.1)
 )
 (* ****** ****** *)
 impltmp
