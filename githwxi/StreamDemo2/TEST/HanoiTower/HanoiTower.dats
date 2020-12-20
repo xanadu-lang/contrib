@@ -130,12 +130,83 @@ item_type =
 , list(int) )
 (* ****** ****** *)
 //
+(*
 implfun
 print_item
   (xyz) =
 ( println(xyz.0);
   println(xyz.1);
   println(xyz.2); )
+*)
+//
+(* ****** ****** *)
+//
+fun
+disk_get_at
+( ds
+: list(int)
+, i0 : int ): int =
+let
+val
+n0 = length(ds)
+in
+if
+(n0+i0 < N)
+then 0 else ds[n0+i0-N]
+end
+//
+fun
+print_disk
+(i0: int): void =
+let
+fun
+auxl
+(j0: int): void =
+if
+(j0 < N)
+then
+(
+if
+(i0+j0) < N
+then print(' ')
+else print('@'); auxl(j0+1)
+)
+fun
+auxr
+(j0: int): void =
+if
+(j0 < N)
+then
+(
+if
+(j0 < i0)
+then print('@')
+else print(' '); auxr(j0+1)
+)
+in
+  (auxl(0); print("|"); auxr(0))
+end // end of [print_disk]
+//
+implfun
+print_item
+  (xyz) =
+( loop(0) ) where
+{
+fun
+loop(i0: int): void =
+if
+(i0 < N)
+then
+(
+print_disk
+(disk_get_at(xyz.0, i0));
+print_disk
+(disk_get_at(xyz.1, i0));
+print_disk
+(disk_get_at(xyz.2, i0));
+println((*void*)); loop(i0+1)
+)
+} (* end of [print_item] *)
 //
 (* ****** ****** *)
 impltmp
