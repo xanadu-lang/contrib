@@ -215,10 +215,10 @@ StreamDemo2_title<>() =
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream_name<>() =
-  "Solving the HanoiTower Puzzle of 8"
+  "Solving the HanoiTower Puzzle"
 impltmp
 StreamDemo2_input_descript<>() =
-  "The stream of moves for solving the HanoiTower Puzzle of 8"
+  "The stream of moves for solving the HanoiTower Puzzle of 8 discs"
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>() =
