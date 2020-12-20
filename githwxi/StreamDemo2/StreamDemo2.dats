@@ -53,9 +53,11 @@ StreamDemo2_xprint
 //
 impltmp
 <>(*tmp*)
-StreamDemo2_xprint(opt) =
+StreamDemo2_xprint
+  (opt) = () where
 {
-  val () = print("StreamDemo2_xprint(...)")
+  val () =
+  print("StreamDemo2_xprint(", "...", ")")
 }
 //
 (* ****** ****** *)

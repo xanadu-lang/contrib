@@ -7,9 +7,11 @@
 $(XATS2JSD)\
 /share/xats2js_prelude.hats"
 (* ****** ****** *)
+(*
 #staload
 "prelude\
 /DATS/CATS/JS/Node/g_print.dats"
+*)
 (* ****** ****** *)
 typedef int2 = (int, int)
 (* ****** ****** *)
@@ -114,8 +116,27 @@ $(STREAMDEMO2)/StreamDemo2.dats"
 #staload
 "$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
-absimpl item_type =
-(list(int), list(int), list(int))
+//
+#extern
+fun
+print_item
+(xyz: item): void
+//
+(* ****** ****** *)
+absimpl
+item_type =
+( list(int)
+, list(int)
+, list(int) )
+(* ****** ****** *)
+//
+implfun
+print_item
+  (xyz) =
+( println(xyz.0);
+  println(xyz.1);
+  println(xyz.2); )
+//
 (* ****** ****** *)
 impltmp
 StreamDemo2_title<>() =
@@ -175,35 +196,66 @@ auxmain
 : list(int2)): stream(item) =
 $lazy
 (
-case- mvs of
+let
+val p1 = poles[0]
+val p2 = poles[1]
+val p3 = poles[2]
+in
+case+ mvs of
 |
-list_nil() => !
+list_nil
+((*void*)) => !
 (
-stream_sing
-((poles[0], poles[1], poles[2]))
+stream_sing((p1, p2, p3))
 )
 |
-list_cons(mv0, mvs) =>
+list_cons
+(mv0, mvs) =>
 let
+//
 val i0 = mv0.0-1
 val j0 = mv0.1-1
 val pi = poles[i0]
 val pj = poles[j0]
-val x0 =
-  list_head_exn(pi)
+//
+val-
+list_cons(x0, xs) = pi
+//
 val () =
-  poles[i0] :=
-  list_tail_exn(pi)
+set_at(poles, i0, xs)
 val () =
-  poles[j0] := list_cons(x0, pj)
+set_at(poles, j0, list_cons(x0, pj))
+//
 in
-strmcon_cons
-((poles[0], poles[1], poles[2]), auxmain(mvs))
-end // end of [let] // list_cons
+strmcon_cons((p1, p2, p3), auxmain(mvs))
+end // list_cons
+//
+end // end of [let]
 )
 }
 end // end of [StreamDemo2_stream<>()]
 
+(* ****** ****** *)
+
+impltmp
+StreamDemo2_xprint<>
+  ( opt ) =
+(
+case+ opt of
+| optn_nil() => ()
+| optn_cons(xs) => print_item(xs)
+)
+impltmp
+StreamDemo2_pauseq<>
+  ( opt ) =
+(
+case+ opt of
+| optn_cons(xyz) =>
+  (length(xyz.1) = N) | optn_nil() => false
+)
+
+(* ****** ****** *)
+#include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
 
 (* end of [HanoiTower.dats] *)

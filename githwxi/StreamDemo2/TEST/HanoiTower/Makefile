@@ -26,18 +26,18 @@ $(TARGET)/StreamDemo2.html
 STREAMDEMO2_SCRIPT_DATS_JS=\
 $(TARGET)/StreamDemo2_script_dats.js
 ######
-test:: ; \
-$(XATS2JS) -d ./HanoiTower.dats
+# test:: ; \
+# $(XATS2JS) -d ./HanoiTower.dats
 ######
-# build:: ; \
-# $(CAT) \
-# $(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
+build:: ; \
+$(CAT) \
+$(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
 ######
 build:: ; \
 $(CAT) \
 $(XATS2JS_PRELUDE) > $(STREAMDEMO2_SCRIPT_DATS_JS) && \
 $(CAT) \
-$(XATS2JS_PRELUDE_NODE) >> $(STREAMDEMO2_SCRIPT_DATS_JS)
+$(SOURCE)/StreamDemo2.cats >> $(STREAMDEMO2_SCRIPT_DATS_JS)
 build:: ; \
 $(XATS2JS) 1>/dev/null 2>&1 \
 --output-a $(STREAMDEMO2_SCRIPT_DATS_JS) -d ./HanoiTower.dats
