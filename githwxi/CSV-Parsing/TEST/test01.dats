@@ -45,7 +45,8 @@ iforeach0(lines)
   impltmp
   iforeach0$work<x0>(i0, x0) =
   let
-    var nerr: int = 0
+    var
+    nerr: int = 0
     val
     line = string_vt2t(x0)
     val
@@ -64,7 +65,7 @@ iforeach0(lines)
        }
     ) (* end of [print_items] *)
   in
-    println("line#", i0, ":"); print_items(items)
+    println("line#", i0, "(", nerr, "):"); print_items(items)
   end
 }
 end (* let *) // end-of-val
