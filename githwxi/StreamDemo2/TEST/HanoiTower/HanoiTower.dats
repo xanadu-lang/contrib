@@ -219,12 +219,13 @@ val pi = poles[i0]
 val pj = poles[j0]
 //
 val-
-list_cons(x0, xs) = pi
+list_cons
+( x0, xs ) = pi
 //
 val () =
-set_at(poles, i0, xs)
+( poles[i0] := xs )
 val () =
-set_at(poles, j0, list_cons(x0, pj))
+( poles[j0] := list_cons(x0, pj) )
 //
 in
 strmcon_cons((p1, p2, p3), auxmain(mvs))
