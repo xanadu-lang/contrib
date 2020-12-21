@@ -18,7 +18,9 @@ $(STREAMDEMO2)/StreamDemo2.dats"
 #staload
 "$(STREAMDEMO)/DATS/StreamDemo.dats"
 (* ****** ****** *)
-absimpl item_type = nint
+absimpl
+item_type =
+(nint, nint)
 (* ****** ****** *)
 impltmp
 StreamDemo2_title<>() =
@@ -33,25 +35,35 @@ StreamDemo2_input_descript<>() =
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>
-  ((*void*)) = fibo(0, 1) where
-{
+  ((*void*)) =
+let
 fun
 fibo
-(f0: int, f1: int) =
-$lazy(strmcon_cons(f0, fibo(f1, f0+f1)))
-} (* end of [StreamDemo2_stream<>] *)
+( f0: nint
+, f1: nint) =
+$llazy
+(
+strmcon_vt_cons
+(f0, fibo(f1, f0+f1)))
+in
+stream_vt2t
+(stream_vt_istreamize(fibo(0, 1)))
+end (* end of [StreamDemo2_stream<>] *)
 (* ****** ****** *)
 impltmp
 StreamDemo2_xprint<>
   ( opt ) =
 (
 case+ opt of
-| optn_nil() => ()
-| optn_cons(p0) => print(p0)
+|
+optn_nil() => ()
+|
+optn_cons(ir) =>
+print("fibo(", ir.0, ") = ", ir.1)
 )
 (* ****** ****** *)
 impltmp
-StreamDemo2_pauseq<>(opt) = false
+StreamDemo2_pauseq<>( opt ) = false
 (* ****** ****** *)
 #include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)

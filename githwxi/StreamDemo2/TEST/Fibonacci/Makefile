@@ -24,6 +24,8 @@ $(TARGET)/StreamDemo2.html
 STREAMDEMO2_SCRIPT_DATS_JS=\
 $(TARGET)/StreamDemo2_script_dats.js
 ######
+# test:: ; $(XATS2JS) -d ./Fibonacci.dats
+######
 build:: ; \
 $(CAT) \
 $(SOURCE)/StreamDemo2.html > $(STREAMDEMO2_HTML)
