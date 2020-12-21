@@ -41,13 +41,17 @@ fun
 fibo
 ( f0: nint
 , f1: nint) =
-$llazy
+$lazy
 (
-strmcon_vt_cons
+strmcon_cons
 (f0, fibo(f1, f0+f1)))
 in
-stream_vt2t
-(stream_vt_istreamize(fibo(0, 1)))
+stream_imap(fibo(0, 1)) where
+{
+impltmp
+imap$fopr
+<nint><item>(i0, x0) = (i0, x0)
+}
 end (* end of [StreamDemo2_stream<>] *)
 (* ****** ****** *)
 impltmp
