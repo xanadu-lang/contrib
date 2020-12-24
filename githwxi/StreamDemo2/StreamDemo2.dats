@@ -57,7 +57,7 @@ StreamDemo2_xprint
   (opt) = () where
 {
   val () =
-  print("StreamDemo2_xprint(", "...", ")")
+  println("StreamDemo2_xprint(", opt, ")")
 }
 //
 (* ****** ****** *)

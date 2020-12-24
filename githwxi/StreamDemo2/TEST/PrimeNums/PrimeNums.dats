@@ -81,8 +81,10 @@ case+ opt of
   print("prime(", ip.0, ") = ", ip.1)
 )
 (* ****** ****** *)
+(*
 impltmp
 StreamDemo2_pauseq<>(opt) = false
+*)
 (* ****** ****** *)
 #include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)

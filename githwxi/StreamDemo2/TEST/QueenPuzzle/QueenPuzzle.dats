@@ -149,10 +149,10 @@ StreamDemo2_title<>() =
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream_name<>() =
-  "Solving the 8 Queen-Puzzle"
+  "Solving the 8-Queen-Puzzle"
 impltmp
 StreamDemo2_input_descript<>() =
-  "The stream of 8 Queen-Puzzle (partial) solutions based on depth-first search"
+  "The stream of 8-Queen-Puzzle (partial) solutions based on depth-first search"
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>() =

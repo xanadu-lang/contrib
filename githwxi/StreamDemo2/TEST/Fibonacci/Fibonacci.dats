@@ -66,8 +66,10 @@ optn_cons(ir) =>
 print("fibo(", ir.0, ") = ", ir.1)
 )
 (* ****** ****** *)
+(*
 impltmp
 StreamDemo2_pauseq<>( opt ) = false
+*)
 (* ****** ****** *)
 #include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
