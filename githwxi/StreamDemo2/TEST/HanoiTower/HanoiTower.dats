@@ -142,7 +142,7 @@ print_item
 (* ****** ****** *)
 //
 fun
-disk_get_at
+disc_get_at
 ( ds
 : list(int)
 , i0 : int ): int =
@@ -156,7 +156,7 @@ then 0 else ds[n0+i0-N]
 end
 //
 fun
-print_disk
+print_disc
 (i0: int): void =
 let
 fun
@@ -185,7 +185,7 @@ else print(' '); auxr(j0+1)
 )
 in
   (auxl(0); print("|"); auxr(0))
-end // end of [print_disk]
+end // end of [print_disc]
 //
 implfun
 print_item
@@ -198,12 +198,12 @@ if
 (i0 < N)
 then
 (
-print_disk
-(disk_get_at(xyz.0, i0));
-print_disk
-(disk_get_at(xyz.1, i0));
-print_disk
-(disk_get_at(xyz.2, i0));
+print_disc
+(disc_get_at(xyz.0, i0));
+print_disc
+(disc_get_at(xyz.1, i0));
+print_disc
+(disc_get_at(xyz.2, i0));
 println((*void*)); loop(i0+1)
 )
 } (* end of [print_item] *)
