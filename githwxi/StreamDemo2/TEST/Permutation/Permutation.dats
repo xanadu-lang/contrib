@@ -56,6 +56,7 @@ impltmp
 StreamDemo2_stream<>() =
 let
 //
+(*
 val xs = auxlst(0) where
 {
 fun
@@ -66,6 +67,11 @@ then
 list_cons
 (i, auxlst(i+1)) else list_nil()
 }
+*)
+//
+val xs =
+gint_listize_nint(N)
+val xs = list_vt2t(xs)
 //
 in
   stream_vt2t(gseq_permutize(xs))
