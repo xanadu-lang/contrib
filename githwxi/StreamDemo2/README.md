@@ -20,6 +20,8 @@ to see a demo.
   (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/Fibonacci/2020-12-12/.))
 - TEST/PrimeNums: For enumerating prime numbers (generated with the sieve of Eratosthenes)
   (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/PrimeNums/2020-12-12/.))
+- TEST/Permutation: For enumerating permutations of the 6-tuple (0, 1, 2, 3, 4, 5)
+  (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/Permutation/2020-12-24/.))
 - TEST/HanoiTower: For animating the process of solving the Hanoi tower puzzle of size 8
   (Please see the [demo](https://xanadu-lang.github.io/contrib/githwxi/StreamDemo2/TEST/HanoiTower/2020-12-20/.))
 - TEST/QueenPuzzle: For animating the process of depth-first search for solving the 8-queen puzzle
