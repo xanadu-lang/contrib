@@ -24,7 +24,7 @@ item_type =
 (* ****** ****** *)
 impltmp
 StreamDemo2_title<>() =
-  "StreamDemo2-PrimeNums"
+  "StreamDemo2-NatPairEnum"
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream_name<>() =
@@ -75,4 +75,4 @@ StreamDemo2_pauseq<>(opt) = false
 #include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
 
-(* end of [PrimeNums.dats] *)
+(* end of [NatPairEnum.dats] *)
