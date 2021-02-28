@@ -24,14 +24,14 @@ item_type =
 (* ****** ****** *)
 impltmp
 StreamDemo2_title<>() =
-  "StreamDemo2-NatPairEnum"
+  "StreamDemo2-RMJPairEnum"
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream_name<>() =
-  "Enumerating Pairs of Postives Ordered by Their Cubic Sums"
+  "Enumerating Ordered Pairs of Postives"
 impltmp
 StreamDemo2_input_descript<>() =
-  "The stream of pairs of positives: (1, 1), (2, 2), (1, 3), (2, 3), (3, 3), (1, 4), (2, 4), ..."
+  "The stream of pairs of positives ordered by their cubic sums: (1, 1), (2, 2), (1, 3), (2, 3), (3, 3), (1, 4), (2, 4), ..."
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>() =
@@ -51,15 +51,20 @@ strmcon_cons
 ) where
 {
 impltmp
-g_cmp<item>
+g_sel2<item>
 (ij1, ij2) =
 let
-val (i1, j1) = ij1
-val (i2, j2) = ij2
+val
+(i1, j1) = ij1
+val
+(i2, j2) = ij2
+val sum1 =
+i1*i1*i1+j1*j1*j1
+val sum2 =
+i2*i2*i2+j2*j2*j2
+val res0 = cmp(sum1, sum2)
 in
-  cmp
-  ( i1*i1*i1+j1*j1*j1
-  , i2*i2*i2+j2*j2*j2)
+if res0 != 0 then res0 else cmp(i1, i2)
 end
 } (*where*) // end of [helper1]
 //
@@ -96,4 +101,4 @@ StreamDemo2_pauseq<>(opt) = false
 #include "$(STREAMDEMO2)/StreamDemo2_.dats"
 (* ****** ****** *)
 
-(* end of [NatPairEnum.dats] *)
+(* end of [RMJPairEnum.dats] *)
