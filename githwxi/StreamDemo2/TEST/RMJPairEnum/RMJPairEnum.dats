@@ -31,7 +31,7 @@ StreamDemo2_stream_name<>() =
   "Enumerating Ordered Pairs of Postives"
 impltmp
 StreamDemo2_input_descript<>() =
-  "The stream of pairs of positives ordered by their cubic sums: (1, 1), (2, 2), (1, 3), (2, 3), (3, 3), (1, 4), (2, 4), ..."
+  "The stream of pairs of positives ordered by their cubic sums: (1, 1), (1, 2), (2, 2), (1, 3), (2, 3), (3, 3), (1, 4), (2, 4), ..."
 (* ****** ****** *)
 impltmp
 StreamDemo2_stream<>() =
